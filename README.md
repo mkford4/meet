@@ -6,6 +6,7 @@ upcoming events.
 --------------- MEET APP USER STORIES: -------------------
 
 FEATURE 1: FILTER EVENTS BY CITY
+As a USER, I should be able to FILTER EVENTS BY CITY, so that I CAN NARROW MY SEARCH.
 SCENARIO 1: WHEN USER HASN’T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES.
 - Given user hasn’t searched for any city
 - When the user opens the app
@@ -22,6 +23,7 @@ SCENARIO 3: USER CAN SELECT A CITY FROM THE SUGGESTED LIST.
   And the user should receive a list of upcoming events in that city
 
 FEATURE 2: SHOW/HIDE AN EVENT'S DETAILS
+As a USER, I should be able to CLICK ON AN EVENT TO EITHER EXPAND OR COLLAPSE IT so that I CAN VIEW OR HIDE EVENTS' DETAILS WHEN DESIRED.
 SCENARIO 1: AN EVENT ELEMENT IS COLLAPSED BY DEFAULT
 - Given the user has view of events list
 - When the user doesn’t click on any event
@@ -36,6 +38,7 @@ SCENARIO 3: USER CAN COLLAPSE AN EVENT TO HIDE ITS DETAILS
 - Then the event collapses within list of events
 
 FEATURE 3: SPECIFY NUMBER OF EVENTS
+As a USER, I should be able to SPECIFY THE NUMBER OF EVENTS so that I CAN CHANGE HOW MANY EVENTS ARE ON DISPLAY AT A GIVEN TIME/SEARCH.
 SCENARIO 1: WHEN USER HASN’T SPECIFIED A NUMBER, 32 IS THE DEFAULT NUMBER
 - Given user has view of events list
 - When user hasn’t clicked to specify amount of events to view
@@ -46,6 +49,7 @@ SCENARIO 2: USER CAN CHANGE THE NUMBER OF EVENTS THEY WANT TO SEE
 - Then main view displays amount of events user has specified
 
 FEATURE 4: USE THE APP WHEN OFFLINE
+As a USER, I should be able to USE THE APP WHEN OFFLINE so that I CAN SEE EVENT INFORMATION WITHOUT INTERNET.
 SCENARIO 1: SHOW CACHED DATA WHEN THERE’S NO INTERNET CONNECTION
 - Given user is using app while offline
 - When user opens app
@@ -56,6 +60,7 @@ SCENARIO 2: SHOW ERROR WHEN USER CHANGES THE SETTINGS (CITY, TIME RANGE)
 - Then an error displaying offline status appears
 
 FEATURE 5: DATA VISUALIZATION
+As a USER, I should be able to VIEW CHARTS DISPLAYING UPCOMING EVENTS IN EACH CITY so that I CAN EASILY & QUICKLY SEE EVENTS WITHOUT SEARCHING YET.
 SCENARIO 1: SHOW A CHART WITH THE NUMBER OF UPCOMING EVENTS IN EACH CITY
 - Given user opens app and doesn’t yet search a city
 - When user sees list of all upcoming events (see Feature 1)
