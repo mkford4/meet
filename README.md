@@ -12,10 +12,12 @@ SCENARIO 1: WHEN USER HASN’T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM AL
 - Given user hasn’t searched for any city
 - When the user opens the app
 - Then the user should see a list of all upcoming events
+
 SCENARIO 2: USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY SEARCH FOR A CITY.
 - Given the main page is open
 - When user starts typing in the city textbox
 - Then the user should see a list of cities (suggestions) that match what they’ve typed
+
 SCENARIO 3: USER CAN SELECT A CITY FROM THE SUGGESTED LIST.
 - Given the user was typing “Berlin” in the city textbox
   And the list of suggested cities is showing
@@ -30,10 +32,12 @@ SCENARIO 1: AN EVENT ELEMENT IS COLLAPSED BY DEFAULT
 - Given the user has view of events list
 - When the user doesn’t click on any event
 - Then the event is collapsed automatically
+
 SCENARIO 2: USER CAN EXPAND AN EVENT TO SEE ITS DETAILS
 - Given the user has view of events list
 - When the user clicks on an event
 - Then the event expands with further details
+
 SCENARIO 3: USER CAN COLLAPSE AN EVENT TO HIDE ITS DETAILS
 - Given the user has view of events list
 - When the user clicks on an expanded event
@@ -46,6 +50,7 @@ SCENARIO 1: WHEN USER HASN’T SPECIFIED A NUMBER, 32 IS THE DEFAULT NUMBER
 - Given user has view of events list
 - When user hasn’t clicked to specify amount of events to view
 - Then the number of events listed is by default 32 maximum
+
 SCENARIO 2: USER CAN CHANGE THE NUMBER OF EVENTS THEY WANT TO SEE
 - Given user has view of events list and wants to change how many events are listed
 - When user clicks to change number of events to X
@@ -58,6 +63,7 @@ SCENARIO 1: SHOW CACHED DATA WHEN THERE’S NO INTERNET CONNECTION
 - Given user is using app while offline
 - When user opens app
 - Then app shows cached data available in display
+
 SCENARIO 2: SHOW ERROR WHEN USER CHANGES THE SETTINGS (CITY, TIME RANGE)
 - Given user is using app while offline
 - When user adjusts search settings
