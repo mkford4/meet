@@ -94,7 +94,7 @@
       const eventRequest = getCalendarEvents + "/" + access_token;
       fetch(eventRequest)
         .then(function (response) {
-          return response.json();
+          return response.json()
         })
         .then(function (json) {
           events.innerText = JSON.stringify(json, null, 2);
