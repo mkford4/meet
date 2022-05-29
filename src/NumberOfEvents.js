@@ -20,6 +20,7 @@ class NumberOfEvents extends Component {
       });
     }
 
+
   };
 
   render() {

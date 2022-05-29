@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Event extends Component {
   state = {
+    event: {},
     collapsed: true,
   }
 
@@ -12,19 +13,26 @@ class Event extends Component {
   };
 
   render() {
-    return <div className="event">
-      <div className="location"></div>
-      <div className="start-date"></div>
-      <button
-        className="details-button"
-        onClick={this.handleClick}
-      >Details</button>
+    const { event } = this.props;
+    const { collapsed } = this.state;
+    return (
+      <div className="event">
+        <div className="location"></div>
+        <div className="start-date"></div>
+        <button
+          className={`details-btn ${collapsed ? "show" : "hide"}-details`}
+          onClick={this.handleClick}
+        >{collapsed ? "Show Details" : "Hide Details"}</button>
 
-      <button //need to write code to toggle hide this button and details button still
-        className="hide-details"
-        onClick={this.handleClick}
-      >Hide Details</button>
-    </div>
+        {!collapsed && (
+          <div
+            className={`more-details ${this.state.collapsed ? "hide" : "show"}`}
+          >
+            <h4>Event Details:</h4>
+          </div>
+        )}
+      </div>
+    );
   }
 }
 export default Event;

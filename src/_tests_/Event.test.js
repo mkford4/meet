@@ -27,12 +27,12 @@ describe('<Event /> component', () => {
   });
 
   test('render details button', () => {
-    expect(EventWrapper.find('.details-button')).toHaveLength(1);
+    expect(EventWrapper.find('.details-btn')).toHaveLength(1);
   });
 
   test('render event details when details-button is clicked', () => {
     EventWrapper.setState({ collapsed: true });
-    EventWrapper.find('.details-button').simulate('click');
+    EventWrapper.find('.details-btn').simulate('click');
     expect(EventWrapper.state('collapsed')).toBe(false);
   });
 
