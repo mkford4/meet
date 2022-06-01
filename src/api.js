@@ -11,7 +11,7 @@ import { mockData } from './mock-data';
 import NProgress from 'nprogress';
 
 export const extractLocations = (events) => {
-  var extractLocations = events.map((event) => event.lcoation);
+  var extractLocations = events.map((event) => event.location);
   var locations = [...new Set(extractLocations)];
   return locations;
 };
