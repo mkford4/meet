@@ -21,16 +21,17 @@ defineFeature(feature, test => {
   });
 
   test('User can change the number of events they want to see', ({ given, when, then }) => {
-    let NumberOfEventsWrapper;
     given('user has view of events list and wants to change how many events are listed', async () => {
       AppWrapper = await mount(<App />);
+      expect(AppWrapper.find('.event'));
     });
     when('user clicks to change number of events to X', () => {
+      const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
       NumberOfEventsWrapper.find('.inputNumberOfEvents').simulate('change', { target: { value: '1' } });
     });
     then('main view displays amount of events user has specified', () => {
       AppWrapper.update();
-      expect(AppWrapper.find('.event')).toHaveLength(1);
+      expect(AppWrapper.state('.inputNumberOfEvents')).toEqual(1);
     });
   });
 });
