@@ -40,9 +40,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Meet App</h1>
+        <h4>Search your city here:</h4>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <EventList events={this.state.events} />
+        <br />
+        <h4>Number of Events:</h4>
         <NumberOfEvents />
+
+        <EventList events={this.state.events} />
       </div>
     );
   }
