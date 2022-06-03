@@ -12,12 +12,8 @@ describe('show/hide an event details', () => {
       //ignoreDefaultArgs: ['--disable-extensions'] //ignores default setting that causes timeout errors
     });
     page = await browser.newPage();
-    await page.goto('http://localhost:8080');
+    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle0' });
     await page.waitForSelector('.event');
-  });
-
-  afterAll(() => {
-    browser.close();
   });
 
   test('An event element is collapsed by default', async () => {
@@ -50,9 +46,6 @@ describe('filter events by city', () => {
     await page.waitForSelector('.event');
   });
 
-  afterAll(() => {
-    browser.close();
-  });
 
   test('When user hasn’t searched for a city, show upcoming events from all cities', async () => {
     const eventList = await page.$('.EventList');
@@ -70,6 +63,10 @@ describe('filter events by city', () => {
     await page.click('.suggestions li').at(0);
     const eventList = await page.$('.EventList');
     expect(eventList).toBe(1);
+  });
+
+  afterAll(() => {
+    browser.close();
   });
 
 });
