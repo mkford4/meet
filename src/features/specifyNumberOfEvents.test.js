@@ -30,8 +30,9 @@ defineFeature(feature, test => {
       NumberOfEventsWrapper.find('.inputNumberOfEvents').simulate('change', { target: { value: '1' } });
     });
     then('main view displays amount of events user has specified', () => {
-      AppWrapper.update();
-      expect(AppWrapper.state('.inputNumberOfEvents')).toEqual(1);
+      const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+      NumberOfEventsWrapper.find('.inputNumberOfEvents').simulate('change', { target: { value: '1' } });
+      expect(NumberOfEventsWrapper.state('numberOfEvents')).toEqual('1');
     });
   });
 });

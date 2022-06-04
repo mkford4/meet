@@ -33,16 +33,24 @@ describe('show/hide an event details', () => {
     expect(eventDetails).toBeNull();
   });
 
+  afterAll(() => {
+    browser.close();
+  });
+
 });
 
 describe('filter events by city', () => {
   let browser;
   let page;
+  jest.setTimeout(30000);
   beforeAll(async () => {
-    jest.setTimeout(30000);
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({
+      //headless: false,
+      //slowMo: 250,
+      //ignoreDefaultArgs: ['--disable-extensions'] //ignores default setting that causes timeout errors
+    });
     page = await browser.newPage();
-    await page.goto('http://localhost:3000');
+    await page.goto('http://localhost:3000/', { waitUntil: 'networkidle0' });
     await page.waitForSelector('.event');
   });
 
