@@ -56,21 +56,22 @@ describe('filter events by city', () => {
 
 
   test('When user hasn’t searched for a city, show upcoming events from all cities', async () => {
-    const eventList = await page.$('.EventList');
-    expect(eventList).toBe(2);
+    const amountOfEvents = await page.$$eval('.event', (element) => element.length);
+    expect(amountOfEvents).toBe(2);
   });
 
   test('User should see a list of suggestions when they search for a city', async () => {
     await page.type('.city', 'Berlin');
-    expect('.suggestions li').toBe(2);
+    const amountOfCities = await page.$$eval(".suggestions li", (element) => element.length);
+    expect(amountOfCities).toBe(2);
   });
 
   test('User can select a city from the suggested list', async () => {
     await page.reload();
     await page.type('.city', 'Berlin');
-    await page.click('.suggestions li').at(0);
-    const eventList = await page.$('.EventList');
-    expect(eventList).toBe(1);
+    await page.click('.suggestions li');
+    const amountOfEvents = await page.$$eval('.event', (element) => element.length);
+    expect(amountOfEvents).toBe(1);
   });
 
   afterAll(() => {
