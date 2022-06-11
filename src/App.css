@@ -5,6 +5,10 @@
   padding: 2% 5%;
 }
 
+.upcoming-events {
+  text-align: left;
+}
+
 .App * {
   box-sizing: border-box;
 }
