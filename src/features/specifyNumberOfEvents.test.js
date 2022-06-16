@@ -1,6 +1,7 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import App from '../App';
+import EventList from '../EventList';
 import { mockData } from '../mock-data';
 import NumberOfEvents from '../NumberOfEvents';
 
@@ -16,7 +17,7 @@ defineFeature(feature, test => {
       AppWrapper.update();
     });
     then('the number of events listed is by default 32 maximum', () => {
-      expect(AppWrapper.find('.event')).toHaveLength(mockData.length);
+      expect(AppWrapper.state('numberOfEvents')).toEqual(32);
     });
   });
 

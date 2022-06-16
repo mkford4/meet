@@ -1,6 +1,9 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import App from '../App';
+import EventList from '../EventList';
+import Event from '../Event';
+import { mockData } from '../mock-data';
 
 const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 
@@ -19,29 +22,34 @@ defineFeature(feature, test => {
   });
 
   test('User can expand an event to see its details', ({ given, when, then }) => {
+    let EventWrapper;
+    let event;
     given('the user has view of events list', async () => {
-      AppWrapper = await mount(<App />);
+      event = mockData[0];
+      EventWrapper = shallow(<Event event={event} />);
     });
     when('the user clicks on an event', () => {
-      AppWrapper.update();
-      AppWrapper.find('.details-btn').at(0).simulate('click');
+      EventWrapper.find('.details-btn').simulate('click');
     });
     then('the event expands with further details', () => {
-      expect(AppWrapper.find('.more-details')).toHaveLength(1);
+      expect(EventWrapper.find('.more-details')).toHaveLength(1);
     });
   });
 
+
   test('User can collapse an event to hide its details', ({ given, when, then }) => {
+    let EventWrapper;
+    let event;
     given('the user has view of events list', async () => {
-      AppWrapper = await mount(<App />);
-      AppWrapper.update();
-      AppWrapper.find('.details-btn').at(0).simulate('click');
+      event = mockData[0];
+      EventWrapper = shallow(<Event event={event} />);
+      EventWrapper.find('.details-btn').simulate('click');
     });
     when('the user clicks on an expanded event', () => {
-      AppWrapper.find('.details-btn').at(0).simulate('click');
+      EventWrapper.find('.details-btn').simulate('click');
     });
     then('the event collapses within list of events', () => {
-      expect(AppWrapper.find('.more-details')).toHaveLength(0);
+      expect(EventWrapper.find('.more-details')).toHaveLength(0);
     });
   });
 });
