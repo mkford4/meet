@@ -1,8 +1,18 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
+
+:root {
+  --background-color: #fdfce6;
+  --orange: #f28444;
+  --pink: #f2a2a2;
+  --yellow: #f2e205;
+  --light-orange: #ffad7d;
+}
 
 .App {
   text-align: center;
   padding: 2% 5%;
+  font-family: 'Dosis', sans-serif;
+  background-color: var(--background-color);
 }
 
 .upcoming-events {
@@ -22,6 +32,14 @@ p {
   margin: 5px 0;
 }
 
+h4 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
 .display-none {
   display: none;
 }
@@ -32,10 +50,12 @@ p {
 
 input[type="text"],
 input[type="number"] {
+  font-family: 'Dosis', sans-serif;
   padding: 8px 6px 8px 10px;
+  background-color: var(--background-color);
   border-radius: 4px;
   outline: none;
-  border: 1px solid #ccc;
+  border: 3px solid var(--orange);
   font-size: 14px;
   line-height: 20px;
   align-self: center;
@@ -69,7 +89,7 @@ input[type="number"] {
 .suggestions>li {
   text-align: left;
   padding: 8px 6px 8px 10px;
-  background-color: #eee;
+  background-color: var(--background-color);
   cursor: default;
 }
 
@@ -79,19 +99,21 @@ input[type="number"] {
 }
 
 .suggestions>li:hover {
-  background-color: #bcdcdb;
+  background-color: var(--yellow);
 }
 
 .event {
   padding: 10px 10px 35px;
   margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid var(--yellow);
   border-radius: 4px;
   position: relative;
 }
 
 .details-btn {
+  font-family: 'Dosis', sans-serif;
+  background-color: var(--light-orange);
   position: absolute;
   right: 5px;
   bottom: 5px;
@@ -99,6 +121,11 @@ input[type="number"] {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+}
+
+.details-btn:hover {
+  background-color: var(--yellow);
+  transition: 0.5s;
 }
 
 .name {
@@ -124,6 +151,13 @@ input[type="number"] {
   width: 200px;
   margin: 20px auto;
   text-align: center;
+}
+
+.search-wrapper {
+  width: 65%;
+  margin: 0 auto;
+  padding: 20px 20px;
+  background-color: var(--pink);
 }
 
 .button-wrapper {
@@ -211,7 +245,18 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
+.navbar-light .navbar-brand {
+  font-weight: 800;
+  font-size: 50px;
+  transition: 0.5s;
+  color: var(--pink);
+  -webkit-text-stroke: .1px black;
+}
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
