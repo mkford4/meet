@@ -49,6 +49,7 @@ class App extends Component {
     } else {
       this.updateEvents()
     }
+
     if (!navigator.onLine) {
       offlineText = 'You are not connected to the internet. Please note: Loaded data is from your previous visit.';
     }
@@ -117,62 +118,64 @@ class App extends Component {
 
   render() {
     //if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+    const { events, locations, updateEvents, accessToken } = this.state;
+    if (accessToken === null) {
+      return <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={getAccessToken} />
+    } else {
 
-    const { events, locations, updateEvents } = this.state;
+      return (
+        <div className="App">
+          <Navbar fixed='top' bg='light' expand='lg'>
+            <Container className='navbar-brand-wrapper'>
+              <ul className='navbar-nav mx-auto'>
+                <li>
+                  <a className='navbar-brand'>Meet App</a>
+                </li>
+              </ul>
+            </Container>
+          </Navbar>
 
-    return (
-      <div className="App">
-        <Navbar fixed='top' bg='light' expand='lg'>
-          <Container className='navbar-brand-wrapper'>
-            <ul className='navbar-nav mx-auto'>
-              <li>
-                <a className='navbar-brand'>Meet App</a>
-              </li>
-            </ul>
-          </Container>
-        </Navbar>
+          <div className="search-wrapper">
+            <h4>Search your city here:</h4>
+            <CitySearch
+              locations={this.state.locations}
+              updateEvents={this.updateEvents}
+            />
+            <br />
+            <h3>Number of events:</h3>
+            <NumberOfEvents
+              updateEvents={this.updateEvents}
+              events={this.state.events}
+            />
+          </div>
+          <div className='data-vis-wrapper'>
+            <EventGenre events={events} />
+            <ResponsiveContainer height={400}>
+              <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
+                <CartesianGrid />
+                <XAxis dataKey="city" name="city" type="category" />
+                <YAxis dataKey="number" name="number of events" type="number" allowDecimals={false} />
+                <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                <Scatter data={this.getData()} fill="#f28444" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </div>
+          <h4 className='upcoming-events'>Upcoming Events:</h4>
+          <EventList events={this.state.events} />
 
-        <div className="search-wrapper">
-          <h4>Search your city here:</h4>
-          <CitySearch
-            locations={this.state.locations}
-            updateEvents={this.updateEvents}
-          />
-          <br />
-          <h3>Number of events:</h3>
-          <NumberOfEvents
-            updateEvents={this.updateEvents}
-            events={this.state.events}
-          />
+          <div className="alert">
+            {!navigator.onLine ? (
+              <OfflineAlert text={this.state.offlineText} />
+            ) : ('')}
+          </div>
+
         </div>
-        <div className='data-vis-wrapper'>
-          <EventGenre events={events} />
-          <ResponsiveContainer height={400}>
-            <ScatterChart margin={{ top: 20, right: 20, bottom: 10, left: 10 }}>
-              <CartesianGrid />
-              <XAxis dataKey="city" name="city" type="category" />
-              <YAxis dataKey="number" name="number of events" type="number" allowDecimals={false} />
-              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              <Scatter data={this.getData()} fill="#f28444" />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </div>
-        <h4 className='upcoming-events'>Upcoming Events:</h4>
-        <EventList events={this.state.events} />
 
-        <div className="alert">
-          {!navigator.onLine ? (
-            <OfflineAlert text={this.state.offlineText} />
-          ) : ('')}
-        </div>
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={getAccessToken} />
-      </div>
-
-    );
+      );
+    }
   }
 }
 
 export default App;
 
-//Add back under OfflineAlert in return():
 //<WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={getAccessToken} />

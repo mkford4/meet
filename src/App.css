@@ -258,6 +258,10 @@ input[type="number"] {
   -webkit-text-stroke: .1px black;
 }
 
+.piechart {
+  padding: 5% 2%;
+}
+
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
     flex-direction: row;
