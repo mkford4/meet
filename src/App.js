@@ -119,7 +119,7 @@ class App extends Component {
   render() {
     //if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     const { events, locations, updateEvents, accessToken } = this.state;
-    if (accessToken === null) {
+    if (!accessToken) {
       return <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={getAccessToken} />
     } else {
 

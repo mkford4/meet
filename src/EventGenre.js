@@ -38,7 +38,6 @@ const EventGenre = ({ events }) => {
           labelLine={false}
           label={renderCustomizedLabel}
           outerRadius={80}
-
           dataKey="value"
         >
           {data.map((entry, index) => (
