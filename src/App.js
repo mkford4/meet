@@ -23,6 +23,13 @@ class App extends Component {
     showWelcomeScreen: undefined,
   }
 
+  constructor(props) {
+    super(props)
+
+    this.goAppOffline = this.goAppOffline.bind(this)
+    this.goAppOnline = this.goAppOnline.bind(this)
+  }
+
   async componentDidMount() {
     this.mounted = true;
 
@@ -39,13 +46,31 @@ class App extends Component {
           this.setState({ events, locations: extractLocations(events) });
         }
       });
+    } else {
+      this.updateEvents()
     }
     if (!navigator.onLine) {
       offlineText = 'You are not connected to the internet. Please note: Loaded data is from your previous visit.';
     }
 
     this.setState({ showWelcomeScreen: !(code || isTokenValid) || this.props.isTestMode, offlineText });
-    window.addEventListener('offline', getEvents());
+
+    window.addEventListener('offline', this.goAppOffline);
+    window.addEventListener('online', this.goAppOnline);
+  }
+
+  goAppOffline() {
+    console.log('i am offline')
+    this.setState({
+      offlineText: 'You are not connected to the internet. Please note: Loaded data is from your previous visit.'
+    })
+  }
+
+  goAppOnline() {
+    console.log('i am online')
+    this.setState({
+      offlineText: ''
+    })
   }
 
 
@@ -99,7 +124,7 @@ class App extends Component {
       <div className="App">
         <Navbar fixed='top' bg='light' expand='lg'>
           <Container className='navbar-brand-wrapper'>
-            <ul class='navbar-nav mx-auto'>
+            <ul className='navbar-nav mx-auto'>
               <li>
                 <a className='navbar-brand'>Meet App</a>
               </li>
@@ -140,7 +165,7 @@ class App extends Component {
             <OfflineAlert text={this.state.offlineText} />
           ) : ('')}
         </div>
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={getAccessToken} />
+
       </div>
 
     );
