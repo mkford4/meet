@@ -116,7 +116,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+    //if (this.state.showWelcomeScreen === undefined) return <div className="App" />
 
     const { events, locations, updateEvents } = this.state;
 
@@ -165,7 +165,7 @@ class App extends Component {
             <OfflineAlert text={this.state.offlineText} />
           ) : ('')}
         </div>
-
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={getAccessToken} />
       </div>
 
     );
